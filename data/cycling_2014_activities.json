@@ -1,0 +1,642 @@
+[
+  {
+    "date": "20140425",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140426T072939Z"
+  },
+  {
+    "date": "20140426",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161723Z"
+  },
+  {
+    "date": "20140427",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140427T082742Z"
+  },
+  {
+    "date": "20140701",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140701T183558Z"
+  },
+  {
+    "date": "20140702",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140713T091826Z"
+  },
+  {
+    "date": "20140713",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140713T092557Z"
+  },
+  {
+    "date": "20140811",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3362,
+        "distance": 15223,
+        "calories": 508
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140812T211124Z"
+  },
+  {
+    "date": "20140812",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3798,
+        "distance": 16534,
+        "calories": 554
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T104547Z"
+  },
+  {
+    "date": "20140813",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 6147,
+        "distance": 26205,
+        "calories": 879
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140814T075610Z"
+  },
+  {
+    "date": "20140814",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 6570,
+        "distance": 28119,
+        "calories": 943
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140815T232938Z"
+  },
+  {
+    "date": "20140815",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 10331,
+        "distance": 33131,
+        "calories": 1143
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140817T130644Z"
+  },
+  {
+    "date": "20140816",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140817T130644Z"
+  },
+  {
+    "date": "20140817",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3463,
+        "distance": 11943,
+        "calories": 409
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140818T081220Z"
+  },
+  {
+    "date": "20140818",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140818T081224Z"
+  },
+  {
+    "date": "20140822",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 9248,
+        "distance": 37139,
+        "calories": 1253
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140822T211758Z"
+  },
+  {
+    "date": "20140920",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 7798,
+        "distance": 29154,
+        "calories": 996
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141210T203740Z"
+  },
+  {
+    "date": "20140921",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20140921T054529Z"
+  },
+  {
+    "date": "20141012",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 5276,
+        "distance": 22343,
+        "calories": 750
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T104518Z"
+  },
+  {
+    "date": "20141013",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 507,
+        "distance": 2057,
+        "calories": 69
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T104534Z"
+  },
+  {
+    "date": "20141120",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 4221,
+        "distance": 22832,
+        "calories": 752
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141121T105653Z"
+  },
+  {
+    "date": "20141121",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 1612,
+        "distance": 8169,
+        "calories": 270
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141222T111335Z"
+  },
+  {
+    "date": "20141122",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 6555,
+        "distance": 25366,
+        "calories": 858
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T224301Z"
+  },
+  {
+    "date": "20141123",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 16723,
+        "distance": 75517,
+        "calories": 2521
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141123T172341Z"
+  },
+  {
+    "date": "20141129",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3617,
+        "distance": 16001,
+        "calories": 535
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141210T223003Z"
+  },
+  {
+    "date": "20141130",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 8444,
+        "distance": 39280,
+        "calories": 1308
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141201T211524Z"
+  },
+  {
+    "date": "20141201",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 5014,
+        "distance": 22843,
+        "calories": 762
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141202T150443Z"
+  },
+  {
+    "date": "20141202",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 6398,
+        "distance": 30297,
+        "calories": 1008
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141210T203740Z"
+  },
+  {
+    "date": "20141203",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 4722,
+        "distance": 22388,
+        "calories": 744
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141204T151540Z"
+  },
+  {
+    "date": "20141204",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 6657,
+        "distance": 29787,
+        "calories": 995
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161836Z"
+  },
+  {
+    "date": "20141205",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 484,
+        "distance": 2220,
+        "calories": 74
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141206T084714Z"
+  },
+  {
+    "date": "20141206",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 15333,
+        "distance": 67097,
+        "calories": 2246
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T144553Z"
+  },
+  {
+    "date": "20141207",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 11285,
+        "distance": 46349,
+        "calories": 1560
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141210T223032Z"
+  },
+  {
+    "date": "20141208",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 7143,
+        "distance": 31680,
+        "calories": 1059
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161854Z"
+  },
+  {
+    "date": "20141209",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 5990,
+        "distance": 27427,
+        "calories": 915
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T144553Z"
+  },
+  {
+    "date": "20141210",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 8653,
+        "distance": 33047,
+        "calories": 1120
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141212T144553Z"
+  },
+  {
+    "date": "20141211",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 9375,
+        "distance": 37584,
+        "calories": 1268
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161836Z"
+  },
+  {
+    "date": "20141212",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 1773,
+        "distance": 7073,
+        "calories": 239
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141213T114253Z"
+  },
+  {
+    "date": "20141213",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 9515,
+        "distance": 49006,
+        "calories": 1619
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T160905Z"
+  },
+  {
+    "date": "20141214",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 11684,
+        "distance": 54013,
+        "calories": 1800
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141215T105319Z"
+  },
+  {
+    "date": "20141215",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 1076,
+        "distance": 4248,
+        "calories": 143
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161751Z"
+  },
+  {
+    "date": "20141216",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 4886,
+        "distance": 22523,
+        "calories": 751
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141217T134533Z"
+  },
+  {
+    "date": "20141217",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 5884,
+        "distance": 30120,
+        "calories": 996
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141218T105136Z"
+  },
+  {
+    "date": "20141218",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 2067,
+        "distance": 10035,
+        "calories": 333
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161836Z"
+  },
+  {
+    "date": "20141219",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3199,
+        "distance": 13977,
+        "calories": 468
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141220T113452Z"
+  },
+  {
+    "date": "20141220",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3828,
+        "distance": 16389,
+        "calories": 550
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161816Z"
+  },
+  {
+    "date": "20141221",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 1131,
+        "distance": 5087,
+        "calories": 170
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141222T111323Z"
+  },
+  {
+    "date": "20141222",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141223T131842Z"
+  },
+  {
+    "date": "20141223",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141228T182729Z"
+  },
+  {
+    "date": "20141224",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141225T170522Z"
+  },
+  {
+    "date": "20141225",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161816Z"
+  },
+  {
+    "date": "20141226",
+    "summary": [
+      {
+        "activity": "cycling",
+        "group": "cycling",
+        "duration": 3038,
+        "distance": 15268,
+        "calories": 505
+      }
+    ],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20150228T161816Z"
+  },
+  {
+    "date": "20141227",
+    "summary": [],
+    "caloriesIdle": 2151,
+    "lastUpdate": "20141228T115046Z"
+  },
+  {
+    "date": "20141228",
+    "summary": [],
+    "caloriesIdle": 2056,
+    "lastUpdate": "20141229T161045Z"
+  },
+  {
+    "date": "20141229",
+    "summary": [],
+    "caloriesIdle": 2056,
+    "lastUpdate": "20141230T154856Z"
+  },
+  {
+    "date": "20141230",
+    "summary": [],
+    "caloriesIdle": 2056,
+    "lastUpdate": "20150101T083853Z"
+  },
+  {
+    "date": "20141231",
+    "summary": [],
+    "caloriesIdle": 2056,
+    "lastUpdate": "20150101T162022Z"
+  }
+]

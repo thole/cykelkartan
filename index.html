@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <title>Hamburg mit dem Fahrrad </title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <style>
+      body {
+        font-family: "Helvetica Neue", "Helvetica";
+        color: #aaa;
+      }
+
+      .summary {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 480px;
+        font-size: 13px;
+      }
+
+      .headline {
+        padding-top: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+     .headline h1 {
+        font-size: 32px;
+        font-weight: normal;
+        line-height: 32px;
+        margin: 0;
+        color: #eee;
+      }
+
+      .dateline{
+        margin: 0 0 15px;
+        font: 11px sans-serif;
+        color: #777;
+      }
+
+      text {
+        font-size : 8pt;
+        font-family: "Helvetica Neue", "Helvetica";
+        fill:#636363;
+      }
+
+      body {
+        background-color: #36394a;
+      }
+    </style>
+    <script type="text/javascript" src="http://thole.github.io/lib/d3/d3.v5.js"></script>
+    <script type="text/javascript" src="http://thole.github.io/lib/topojson/topojson.v1.js"></script>
+    <script type="text/javascript" src="http://thole.github.io/lib/moment/moment.v2.js"></script>
+  </head>
+  <body>
+    <div class="headline">
+      <div class="dateline">März 10, 2015</div>
+      <div class="summary">
+        Da ich seit dem Herbst wieder nen bisschen mehr mit dem Fahrrad fahre, habe ich alle gefahrenen Strecken als rote Linien in die Kate eingetragen. Häufig verwendete Routen sind durch einen helleren Farbton zu erkennen.
+      </div>
+      <div>
+        <select name="yearSelection" id="yearSelection" onchange="changeYear()">
+          <option value="2014">2014</option>
+          <option selected="selected" value="2015">2015</option>
+        </select>
+      </div>
+    </div>
+    <div id="container"></div>
+    <svg id="map" style="display:block;margin:auto"></svg>
+    <svg id="days" style="display:block;margin:auto"></svg>
+
+    <script type="text/javascript">
+
+      d3.selection.prototype.moveToFront = function() {
+        return this.each(function(){
+          this.parentNode.appendChild(this);
+        });
+      };
+
+      String.prototype.startsWith = function (str){
+          return this.indexOf(str) == 0;
+      };
+    
+      function changeYear(){
+        var yearSelections = d3.select('#yearSelection');
+        var yearSelection = yearSelections[0][0];
+        var value = yearSelection.options[yearSelection.selectedIndex].value
+
+        d3.json("data/cycling_" + value + ".topojson", drawRoute);
+      }  
+
+      function getYear(act){
+        for (var d in act.objects) {
+          if(d.startsWith('cycling_')){
+            return d.substr(8);
+          }
+        }
+        return undefined;
+      }
+
+
+  function drawRoute(error, act){
+    var year = getYear(act);
+    console.log('drawing route (' + year + ')')
+    
+    viz.selectAll(".cycle")
+      .remove()
+
+    viz.selectAll(".cycle")
+      .data(topojson.feature(act, act.objects['cycling_' + year]).features)
+    .enter().append("path")
+      .attr("name", function(d) { return d.properties.name; })
+      .attr("class","cycle")
+      .attr("d", path)
+      .style("fill","none")
+      .style("stroke","#ff646a")
+      .style("stroke-width","0.35px")
+      .style("stroke-opacity","0.4")
+
+    d3.json("data/cycling_" + year + "_activities.json",drawActivity);
+  }
+
+
+  function drawActivity(activities){
+      var data = new Array();
+      var days = new Array();
+      activities.forEach(function(day){
+        if(day.summary == null){return;} // why ?????
+        day.summary.forEach(function(summary){
+          if(summary.activity !== 'cycling'){return;}
+          summary.date = moment(day.date,'YYYYMMDD');
+          days.push(summary.date.toDate().getTime());
+          data.push(summary);
+        });
+      });
+
+      // look for gaps...
+      var dateRange = d3.extent(data,function(d){ return d.date.toDate();})
+      var distanceRange = d3.extent(data,function(d){ return d.distance;})
+
+      var runner = moment(dateRange[0]);
+      var end = moment(dateRange[1]);
+      runner = runner.month(0).date(1);
+      end = end.month(11).date(31);
+
+      while(runner.toDate() < end.toDate()){
+        if(days.indexOf(runner.toDate().getTime()) == -1){
+          var emptyData = {'activity':'cycling','calories':0,'date':moment(runner),'distance':0,'duration':0,'group':0}
+          data.push(emptyData);
+        }
+        runner = runner.add(1, 'days');
+      }
+
+      var weekStats = new Array();
+      var runner = moment(dateRange[0]);
+      runner = runner.month(0).date(1);
+      while(runner.toDate() < end.toDate()){
+        var sum = d3.sum(data, function(d){
+                                  if(d.date.month() == runner.month()){return d.distance;}
+                                  else{ return 0;}
+                               });
+        weekStats.push({'date':moment(runner),'distance':sum})
+        runner = runner.add(1, 'months');
+      }
+      data.sort(function(a,b){return a.date.toDate().getTime() - b.date.toDate().getTime(); })
+
+
+      var y = d3.scale.linear()
+          .domain([0,distanceRange[1]])
+          .range([1, 30]);
+
+      d3.select("#yearStats").remove();
+
+      var g = d3.select("#days")
+          .attr("width",1200)
+          .attr("height",50)
+          .append("g")
+          .attr('id', 'yearStats');
+
+      g.selectAll("rect")
+            .data(data)
+            .enter().append("rect")
+            .attr("y", function(d,i){ return (30 - y(d.distance)) })
+            .attr("x", function(d, i) {return d.date.dayOfYear()*3 + (d.date.month() * 10) })
+            .attr("height", function(d,i){ return y(d.distance);})
+            .attr("width",2)
+            .attr("class",function(d,i){return d.date.toDate();})
+            .on("mouseover",showDay)
+            .on("mouseout",hideDay)
+            .style("fill","#ff646a");
+
+      g.selectAll("text")
+            .data(weekStats)
+            .enter().append("text")
+            .attr("y", 40)
+            .attr("x", function(d,i){return d.date.dayOfYear()*3 + (d.date.month() * 10) })
+            .text(function(d){return d.date.format('MMM') + " - " + Math.round(d.distance / 1000) + " km";})
+            .style("fill","#ff646a")
+  }
+
+
+  function zoomHandler() {
+    viz.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  }
+
+  function hideDay(d){
+     d3.selectAll("path.cycle")
+      .style("stroke-opacity","0.8")
+      .style("stroke","#ff646a")
+      .style("stroke-width","0.35px")
+
+    d3.select("#statistics")
+       .remove();
+
+  }
+
+  function showDay(d){
+
+    var day = d.date.format('DD.MM.YY');
+
+    var g = d3.select("#map")
+              .append("g")
+              .attr("id","statistics")
+
+    g.append("text")
+        .attr("y", 50)
+        .attr("x", 50)
+        .attr("class","statistics")
+        .text(day)
+        .style("fill","yellow")
+
+    g.append("text")
+        .attr("y", 62.5)
+        .attr("x", 50)
+        .attr("class","statistics")
+        .text(Math.round(d.distance / 1000) + " km" )
+        .style("fill","yellow")
+
+    g.append("text")
+        .attr("y", 75)
+        .attr("x", 50)
+        .attr("class","statistics")
+        .text(Math.round(d.duration / 60 / 60 * 100)/100 + " hours" )
+        .style("fill","yellow")
+
+    g.append("text")
+        .attr("y", 87.5)
+        .attr("x", 50)
+        .attr("class","statistics")
+        .text(d.calories + " calories")
+        .style("fill","yellow")
+
+
+    var track = d3.selectAll("path.cycle[name='" + day + "']")
+      .style("stroke-opacity","0.8")
+      .style("stroke","#ffff00")
+      .style("stroke-width","1.35px")
+      .moveToFront()
+  }
+
+
+	var geoDB = new Object();
+
+	var width = 1200,
+	    height = 500;
+
+	var projection = d3.geo.albers()
+		.center([10.0, 53.55])
+		.rotate([0, 0])
+		.parallels([50, 60])
+		.scale(100000)
+		.translate([width / 2, height / 2]);
+
+	var path = d3.geo.path()
+	    .projection(projection);
+
+	var svg = d3.select("#map")
+	    .attr("width", width)
+	    .attr("height", height)
+
+
+  var viz = svg.append("g");
+
+  var zoomListener = d3.behavior.zoom()
+      .scaleExtent([1, 10])
+      .on("zoom", zoomHandler);
+
+  zoomListener(svg);
+
+d3.json("data/hamburg.json", function(error, deu) {
+
+  viz.selectAll(".subunit")
+	    .data(topojson.feature(deu, deu.objects.roads).features)
+	  .enter().append("path")
+	    .attr("d", path)
+      .style("fill","none")
+      .style("stroke","#999")
+      .style("stroke-width","0.05px")
+
+  viz.selectAll(".waterways")
+      .data(topojson.feature(deu, deu.objects.waterways).features)
+    .enter().append("path")
+      .attr("d", path)
+      .style("fill","none")
+      .style("stroke","#999")
+      .style("stroke-width","0.05px")
+
+   viz.selectAll(".railways")
+      .data(topojson.feature(deu, deu.objects.railways).features)
+    .enter().append("path")
+      .attr("d", path)
+      .style("fill","none")
+      .style("stroke","#999")
+      .style("stroke-width","0.05px")
+    
+      
+  d3.json("data/cycling_2015.topojson", drawRoute);
+});
+
+  </script>
+ </body>
+</html>
