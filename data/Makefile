@@ -21,16 +21,20 @@ cycling_2015_activities.json: ./temp/json/yearly/activities/activities_2015.json
 clean:
 	rm -f *.topojson
 	rm -f *.geojson 
+	rm -f cycling_*.json
+	rm -f -r ./temp
 
 delete:
 	rm -f moves_export.zip
 	rm -f -r ./temp
+	
 
 
 extract: moves_export.zip
 	unzip moves_export.zip -d ./temp
 	unzip ./temp/gpx.zip -d ./temp
 	unzip ./temp/json.zip -d ./temp
+
 
 
 
