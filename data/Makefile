@@ -17,7 +17,6 @@ cycling_2014_activities.json:  ./temp/json/yearly/activities/activities_2014.jso
 cycling_2015_activities.json: ./temp/json/yearly/activities/activities_2015.json
 	node clean.js ./temp/json/yearly/activities/activities_2015.json > cycling_2015_activities.json
 
-
 clean:
 	rm -f *.topojson
 	rm -f *.geojson 
