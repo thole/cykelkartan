@@ -45,9 +45,15 @@
       }
 
     </style>
+    <!--
     <script type="text/javascript" src="http://thole.github.io/lib/d3/d3.v5.js"></script>
     <script type="text/javascript" src="http://thole.github.io/lib/topojson/topojson.v1.js"></script>
     <script type="text/javascript" src="http://thole.github.io/lib/moment/moment.v2.js"></script>
+  -->
+    <script type="text/javascript" src="libs/d3.js"></script>
+    <script type="text/javascript" src="libs/topojson.js"></script>
+    <script type="text/javascript" src="libs/moment.js"></script>
+
   </head>
   <body>
     <div class="headline">
@@ -112,7 +118,7 @@
       .style("fill","none")
       .style("stroke","#ff646a")
       .style("stroke-width","0.35px")
-      .style("stroke-opacity","0.3")
+      .style("stroke-opacity","0.2")
 
     d3.json("data/cycling_" + year + "_activities.json",drawActivity);
   }
@@ -202,7 +208,7 @@
 
   function hideDay(d){
      d3.selectAll("path.cycle")
-      .style("stroke-opacity","0.8")
+      .style("stroke-opacity","0.5")
       .style("stroke","#ff646a")
       .style("stroke-width","0.35px")
 
@@ -249,7 +255,7 @@
 
 
     var track = d3.selectAll("path.cycle[name='" + day + "']")
-      .style("stroke-opacity","0.3")
+      .style("stroke-opacity","0.5")
       .style("stroke","#ffff00")
       .style("stroke-width","1.35px")
       .moveToFront()
@@ -279,7 +285,7 @@
   var viz = svg.append("g");
 
   var zoomListener = d3.behavior.zoom()
-      .scaleExtent([1, 10])
+      .scaleExtent([0.15, 50])
       .on("zoom", zoomHandler);
 
   zoomListener(svg);
