@@ -8,6 +8,7 @@
       body {
         font-family: "Helvetica Neue", "Helvetica";
         color: #aaa;
+        background-color: #36394a;
       }
 
       .summary {
@@ -43,9 +44,6 @@
         fill:#636363;
       }
 
-      body {
-        background-color: #36394a;
-      }
     </style>
     <script type="text/javascript" src="http://thole.github.io/lib/d3/d3.v5.js"></script>
     <script type="text/javascript" src="http://thole.github.io/lib/topojson/topojson.v1.js"></script>
@@ -251,7 +249,7 @@
 
 
     var track = d3.selectAll("path.cycle[name='" + day + "']")
-      .style("stroke-opacity","0.8")
+      .style("stroke-opacity","0.3")
       .style("stroke","#ffff00")
       .style("stroke-width","1.35px")
       .moveToFront()
