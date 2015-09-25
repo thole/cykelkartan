@@ -45,15 +45,10 @@
       }
 
     </style>
-    <!--
     <script type="text/javascript" src="http://thole.github.io/lib/d3/d3.v5.js"></script>
     <script type="text/javascript" src="http://thole.github.io/lib/topojson/topojson.v1.js"></script>
     <script type="text/javascript" src="http://thole.github.io/lib/moment/moment.v2.js"></script>
-  -->
-    <script type="text/javascript" src="libs/d3.js"></script>
-    <script type="text/javascript" src="libs/topojson.js"></script>
-    <script type="text/javascript" src="libs/moment.js"></script>
-
+  
   </head>
   <body>
     <div class="headline">
@@ -74,6 +69,7 @@
 
     <script type="text/javascript">
 
+      // move selected route to front
       d3.selection.prototype.moveToFront = function() {
         return this.each(function(){
           this.parentNode.appendChild(this);
@@ -84,23 +80,38 @@
           return this.indexOf(str) == 0;
       };
     
-      function changeYear(){
-        var yearSelections = d3.select('#yearSelection');
-        var yearSelection = yearSelections[0][0];
-        var value = yearSelection.options[yearSelection.selectedIndex].value
+     
 
-        d3.json("data/cycling_" + value + ".topojson", drawRoute);
-      }  
 
-      function getYear(act){
-        for (var d in act.objects) {
-          if(d.startsWith('cycling_')){
-            return d.substr(8);
-          }
-        }
-        return undefined;
-      }
 
+
+
+
+
+  // drawing
+  function drawMap(error, deu){
+    viz.selectAll(".subunit")
+      .data(topojson.feature(deu, deu.objects.roads).features)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("class","roads")
+      .style("fill","none")
+      .style("stroke","#999")
+      .style("stroke-width","0.15px")
+  }
+
+  function drawBorder(error, deu){
+    console.log(deu);
+    viz.selectAll(".border")
+      .data(topojson.feature(deu, deu.objects.ne_10m_admin_0_map_subunits).features)
+    .enter().append("path")
+      .attr("d", path)
+      .attr("class","border")
+      .style("visibility","hidden")
+      .style("fill","none")
+      .style("stroke","#999")
+      .style("stroke-width","2.5px");
+  }
 
   function drawRoute(error, act){
     var year = getYear(act);
@@ -120,11 +131,10 @@
       .style("stroke-width","0.35px")
       .style("stroke-opacity","0.2")
 
-    d3.json("data/cycling_" + year + "_activities.json",drawActivity);
+    
   }
 
-
-  function drawActivity(activities){
+  function drawDailyActivity(activities){
       var data = new Array();
       var days = new Array();
       activities.forEach(function(day){
@@ -188,8 +198,8 @@
             .attr("height", function(d,i){ return y(d.distance);})
             .attr("width",2)
             .attr("class",function(d,i){return d.date.toDate();})
-            .on("mouseover",showDay)
-            .on("mouseout",hideDay)
+            .on("mouseover",drawRouteStatistic)
+            .on("mouseout",hideRouteStatistic)
             .style("fill","#ff646a");
 
       g.selectAll("text")
@@ -201,23 +211,27 @@
             .style("fill","#ff646a")
   }
 
+  // interaction
+  function changeYear(){
+    var yearSelections = d3.select('#yearSelection');
+    var yearSelection = yearSelections[0][0];
+    var value = yearSelection.options[yearSelection.selectedIndex].value
 
-  function zoomHandler() {
-    viz.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  }
+    d3.json("data/cycling_" + value + ".topojson", drawRoute);
 
-  function hideDay(d){
-     d3.selectAll("path.cycle")
+  }  
+
+  function hideRouteStatistic(d){
+    d3.selectAll("path.cycle")
       .style("stroke-opacity","0.5")
       .style("stroke","#ff646a")
       .style("stroke-width","0.35px")
-
+    
     d3.select("#statistics")
        .remove();
-
   }
 
-  function showDay(d){
+  function drawRouteStatistic(d){
 
     var day = d.date.format('DD.MM.YY');
 
@@ -253,6 +267,12 @@
         .text(d.calories + " calories")
         .style("fill","yellow")
 
+    // TODO speed history
+    // TODO heart history
+    // TODO high history
+    // TODO temperature history
+    // TODO weather symbol
+    // TODO wind direction
 
     var track = d3.selectAll("path.cycle[name='" + day + "']")
       .style("stroke-opacity","0.5")
@@ -261,8 +281,30 @@
       .moveToFront()
   }
 
+  function zoomHandler() {
+    if(d3.event.scale < 0.2 && !showborders){
+      showborders = true;
+      viz.selectAll(".border").style("visibility","visible");
+      viz.selectAll(".roads").style("visibility","hidden");
+    }
+    else if(d3.event.scale > 0.2 && showborders) {
+      showborders = false;
+      viz.selectAll(".roads").style("visibility","visible");
+      viz.selectAll(".border").style("visibility","hidden");
+    }
+    viz.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  }
 
-	var geoDB = new Object();
+  // helper
+  function getYear(act){
+    for (var d in act.objects) {
+      if(d.startsWith('cycling_')){
+        return d.substr(8);
+      }
+    }
+    return undefined;
+  }
+
 
 	var width = 1200,
 	    height = 500;
@@ -281,45 +323,28 @@
 	    .attr("width", width)
 	    .attr("height", height)
 
-
   var viz = svg.append("g");
 
   var zoomListener = d3.behavior.zoom()
-      .scaleExtent([0.15, 50])
+      .scaleExtent([0.05, 50])
       .on("zoom", zoomHandler);
+
+  var showborders = false;
 
   zoomListener(svg);
 
-d3.json("data/hamburg.json", function(error, deu) {
+  d3.json("data/borders.json",drawBorder);
+  d3.json("data/hamburg.json",function(error,data){
+    drawMap(error,data)
+    d3.json("data/cycling_2015.topojson", drawRoute);
+    d3.json("data/cycling_2015_activities.json",drawDailyActivity);
+  });
+  
 
-  viz.selectAll(".subunit")
-	    .data(topojson.feature(deu, deu.objects.roads).features)
-	  .enter().append("path")
-	    .attr("d", path)
-      .style("fill","none")
-      .style("stroke","#999")
-      .style("stroke-width","0.05px")
-
-  viz.selectAll(".waterways")
-      .data(topojson.feature(deu, deu.objects.waterways).features)
-    .enter().append("path")
-      .attr("d", path)
-      .style("fill","none")
-      .style("stroke","#999")
-      .style("stroke-width","0.05px")
-
-   viz.selectAll(".railways")
-      .data(topojson.feature(deu, deu.objects.railways).features)
-    .enter().append("path")
-      .attr("d", path)
-      .style("fill","none")
-      .style("stroke","#999")
-      .style("stroke-width","0.05px")
-    
-      
-  d3.json("data/cycling_2015.topojson", drawRoute);
-});
+  
+  
 
   </script>
+
  </body>
 </html>
